@@ -34,13 +34,12 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 				for (const [key, value] of params.entries()) {
 					initDataObj[key] = value;
 				}
-				const hash = initDataObj.hash as string;
 
 				setTGInitData(initDataObj);
 				setTGUser(JSON.parse(initDataObj.user || "{}") as TgUser);
 
-				delete initDataObj.hash;
-				const dataCheckString = Object.keys(initDataObj)
+				const { hash, ...withoutHashInitDataObj } = initDataObj;
+				const dataCheckString = Object.keys(withoutHashInitDataObj)
 					.sort()
 					.map((key) => `${key}=${initDataObj[key]}`)
 					.join("\n");

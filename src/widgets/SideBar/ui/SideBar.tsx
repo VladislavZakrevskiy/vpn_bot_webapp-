@@ -2,8 +2,9 @@ import { Cell, IconButton, IconContainer, Modal, Section } from "@telegram-apps/
 import { MdOutlineMenu } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { getRouteSettings } from "@/shared/consts/router";
+import { getRouteRates, getRouteSettings } from "@/shared/consts/router";
 import { useState } from "react";
+import { FaMoneyBill } from "react-icons/fa";
 
 export const SideBar = () => {
 	const nav = useNavigate();
@@ -20,7 +21,7 @@ export const SideBar = () => {
 				<MdOutlineMenu />
 			</IconButton>
 
-			<Modal onOpenChange={setIsOpen} open={isOpen}>
+			<Modal className="p-2" onOpenChange={setIsOpen} open={isOpen}>
 				<Section header="Сущности">
 					<Cell
 						onClick={onNav(getRouteSettings())}
@@ -31,6 +32,16 @@ export const SideBar = () => {
 						}
 					>
 						Настройки ТГ Бота
+					</Cell>
+					<Cell
+						onClick={onNav(getRouteRates())}
+						before={
+							<IconContainer>
+								<FaMoneyBill />
+							</IconContainer>
+						}
+					>
+						Тарифы
 					</Cell>
 				</Section>
 			</Modal>

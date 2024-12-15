@@ -4,7 +4,7 @@ import App from "@/app/App";
 import { ErrorBoundary } from "@/app/providers/ErrorBoundary";
 import { StoreProvider } from "@/app/providers/StoreProvider";
 import { ThemeProvider } from "./app/providers/ThemeProvider";
-import "@telegram-apps/telegram-ui/dist/styles.css";
+// import { AuthProvider } from "./entities/User/ui/AuthProvider";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
@@ -13,7 +13,9 @@ root.render(
 		<StoreProvider>
 			<ErrorBoundary>
 				<ThemeProvider>
+					{/* <AuthProvider> */}
 					<App />
+					{/* </AuthProvider> */}
 				</ThemeProvider>
 			</ErrorBoundary>
 		</StoreProvider>

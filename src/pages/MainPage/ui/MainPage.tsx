@@ -3,7 +3,7 @@ import { memo } from "react";
 
 const MainPage = memo(() => {
 	return (
-		<div>
+		<div className="flex justify-center items-center flex-1">
 			<Title>Здравствуйте, это админка</Title>
 		</div>
 	);

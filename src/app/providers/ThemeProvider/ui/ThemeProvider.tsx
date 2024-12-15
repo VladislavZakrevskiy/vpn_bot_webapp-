@@ -6,5 +6,5 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
-	return <AppRoot>{children}</AppRoot>;
+	return <AppRoot platform="base">{children}</AppRoot>;
 };

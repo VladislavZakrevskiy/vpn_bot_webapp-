@@ -38,12 +38,17 @@ const SettingsPage = () => {
 		await updateSettings(currentSettings);
 		await refetch();
 	};
-	console.log(currentSettings);
+
+	const onCancel = () => {
+		setMode("read");
+		setCurrentSettings(settings!);
+	};
 
 	return (
 		<div className="flex-col gap-3 items-start">
 			<div>
-				<div className="w-full flex justify-end p-3">
+				<div className="w-full flex justify-end p-3 gap-2">
+					{mode === "edit" && <Button onClick={onCancel}>Отмена</Button>}
 					<Button onClick={onSubmit} type={mode === "edit" ? "submit" : undefined}>
 						{mode === "read" ? "Редактировать" : "Подтвердить изменения"}
 					</Button>

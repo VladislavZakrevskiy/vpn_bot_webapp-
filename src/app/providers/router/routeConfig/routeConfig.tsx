@@ -1,9 +1,17 @@
-import { AppRoutes, getRouteMain, getRouteNotFound, getRouteNotAuth, getRouteSettings } from "@/shared/consts/router";
+import {
+	AppRoutes,
+	getRouteMain,
+	getRouteNotFound,
+	getRouteNotAuth,
+	getRouteSettings,
+	getRouteRates,
+} from "@/shared/consts/router";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { LazyMainPage } from "@/pages/MainPage";
 import { AppRouteProps } from "@/shared/types/router";
 import { LazyNotAuth } from "@/pages/NotAuth";
 import { LazySettingsPage } from "@/pages/Sections/Settings";
+import { LazyRatePage } from "@/pages/Sections/Rates";
 
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 	[AppRoutes.MAIN]: {
@@ -21,5 +29,9 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 	[AppRoutes.SETTINGS]: {
 		path: getRouteSettings(),
 		element: <LazySettingsPage />,
+	},
+	[AppRoutes.RATES]: {
+		path: getRouteRates(),
+		element: <LazyRatePage />,
 	},
 };
