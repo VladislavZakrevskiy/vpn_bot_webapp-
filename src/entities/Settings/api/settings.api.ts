@@ -4,7 +4,7 @@ import { Settings } from "../model/types/Settings";
 const settingApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
 		getSettings: build.query<Settings, void>({
-			query: () => `/settigns`,
+			query: () => `/settings`,
 		}),
 		updateSettings: build.mutation<Settings, Partial<Settings>>({
 			query: (body) => ({
