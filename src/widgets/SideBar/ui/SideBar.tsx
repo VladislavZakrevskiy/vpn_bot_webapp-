@@ -2,9 +2,10 @@ import { Cell, IconButton, IconContainer, Modal, Section } from "@telegram-apps/
 import { MdOutlineMenu } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { getRouteRates, getRouteSettings } from "@/shared/consts/router";
+import { getRouteRates, getRouteSettings, getRouteUsers } from "@/shared/consts/router";
 import { useState } from "react";
 import { FaMoneyBill } from "react-icons/fa";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 export const SideBar = () => {
 	const nav = useNavigate();
@@ -42,6 +43,17 @@ export const SideBar = () => {
 						}
 					>
 						Тарифы
+					</Cell>
+
+					<Cell
+						onClick={onNav(getRouteUsers())}
+						before={
+							<IconContainer>
+								<FaRegCircleUser />
+							</IconContainer>
+						}
+					>
+						Пользователи
 					</Cell>
 				</Section>
 			</Modal>

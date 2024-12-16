@@ -5,6 +5,7 @@ import {
 	getRouteNotAuth,
 	getRouteSettings,
 	getRouteRates,
+	getRouteUsers,
 } from "@/shared/consts/router";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { LazyMainPage } from "@/pages/MainPage";
@@ -12,6 +13,7 @@ import { AppRouteProps } from "@/shared/types/router";
 import { LazyNotAuth } from "@/pages/NotAuth";
 import { LazySettingsPage } from "@/pages/Sections/Settings";
 import { LazyRatePage } from "@/pages/Sections/Rates";
+import { LazyUserPage } from "@/pages/Sections/Users";
 
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 	[AppRoutes.MAIN]: {
@@ -33,5 +35,9 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 	[AppRoutes.RATES]: {
 		path: getRouteRates(),
 		element: <LazyRatePage />,
+	},
+	[AppRoutes.USERS]: {
+		path: getRouteUsers(),
+		element: <LazyUserPage />,
 	},
 };
