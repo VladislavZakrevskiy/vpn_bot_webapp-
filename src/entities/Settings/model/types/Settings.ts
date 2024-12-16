@@ -4,7 +4,8 @@ export interface Settings {
 	user_proxy_path: string;
 	crypto_types: string[];
 	max_sert: number;
-	is_cart_enable: boolean
-	is_star_enable: boolean
-	is_crypto_enable: boolean
+	is_cart_enable: boolean;
+	is_star_enable: boolean;
+	admin_command: string;
+	is_crypto_enable: boolean;
 }

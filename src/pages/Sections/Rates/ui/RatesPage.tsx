@@ -20,11 +20,16 @@ const RatesPage: React.FC = () => {
 			<div className="grid grid-cols-1 p-2 gap-2 ">
 				{rates?.map((rate) => (
 					<Card>
-						<Card.Chip readOnly>{rate.price} RUB</Card.Chip>
+						<Card.Chip mode="outline" readOnly style={{ outline: "none", border: "none" }}>
+							<div className="flex items-start gap-1">
+								<RateModal refetch={refetch} rate={rate} mode="update" />
+								<DeleteModal id={rate.id} refetch={refetch} />
+							</div>
+						</Card.Chip>
 						<div className="flex flex-col gap-1 items-start p-4">
 							<Text>Срок: {rate.expiresIn} дней</Text>
-							<Text>Лимит: {rate.GB_limit}ГБ</Text>
-							<Text>Скорость: {rate.MB_speed}ГБит</Text>
+							<Text>Лимит: {rate.GB_limit} ГБ</Text>
+							<Text>Скорость: {rate.MB_speed} ГБит</Text>
 							<Text>Макс. устройств: {rate.max_devices}</Text>
 							<Text>Цена в ⭐: {rate.price_XTR}</Text>
 						</div>
@@ -34,10 +39,7 @@ const RatesPage: React.FC = () => {
 							subtitle={
 								<div className="w-full flex items-start justify-between px-2 pt-4 overflow-visible">
 									<Caption>{rate.description}</Caption>
-									<div className="flex items-start gap-1">
-										<RateModal refetch={refetch} rate={rate} mode="update" />
-										<DeleteModal id={rate.id} refetch={refetch} />
-									</div>
+									<Caption>{rate.price} руб.</Caption>
 								</div>
 							}
 						>

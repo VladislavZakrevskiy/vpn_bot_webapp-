@@ -125,7 +125,7 @@ export const RateModal: FC<RateModalProps> = ({ mode, rate, refetch }) => {
 					/>
 					<Input
 						required={mode === "create"}
-						header={"Макс. сертификатов"}
+						header={"Макс. устройств"}
 						value={getValue("max_devices")}
 						onChange={(e) => handleUpdateInput("max_devices", e.target.value)}
 					/>

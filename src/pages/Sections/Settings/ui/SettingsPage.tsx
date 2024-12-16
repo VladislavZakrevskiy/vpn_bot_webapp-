@@ -68,6 +68,13 @@ const SettingsPage = () => {
 					header="Proxy Path (user)"
 				/>
 				<Input
+					value={currentSettings.admin_command}
+					onChange={(e) => setCurrentSettings((prev) => ({ ...prev!, admin_command: e.target.value }))}
+					required
+					disabled={mode === "read"}
+					header="Команда для админа"
+				/>
+				<Input
 					value={currentSettings.max_sert || ""}
 					onChange={(e) => setCurrentSettings((prev) => ({ ...prev!, max_sert: +e.target.value }))}
 					required
@@ -130,7 +137,7 @@ const SettingsPage = () => {
 					Оплата Crypto Pay
 				</Cell>
 				<div className="p-[22px]">
-					<Text>Виды принимаемой криптовалюты</Text>
+					<Text className={mode === "read" ? "opacity-50" : ""}>Виды принимаемой криптовалюты</Text>
 					{currentSettings.is_crypto_enable &&
 						currentSettings.crypto_types.map((crypto_type, i) => (
 							<Input
