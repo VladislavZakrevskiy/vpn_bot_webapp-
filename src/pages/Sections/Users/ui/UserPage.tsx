@@ -27,7 +27,6 @@ const UserPage: React.FC = () => {
 							<Text>TG ID: {user.tg_id}</Text>
 							<Text>Пробный потрачен: {user.was_trial ? "✅" : "❌"}</Text>
 							<Text>Активна подписка: {user.is_active ? "✅" : "❌"}</Text>
-							<Text>Куплено тарифов: {user.purchases.length}шт.</Text>
 							<Text>Осталось дней: {user.vpn.package_days}</Text>
 							<Text>Осталось тарифа: {user.vpn.usage_limit_GB - user.vpn.current_usage_GB}Гб</Text>
 						</div>

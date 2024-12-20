@@ -2,10 +2,31 @@ import { rtkApi } from "@/shared/api/rtkApi";
 import { User } from "../types/User";
 import { UserUpdateInput } from "../types/UserUpdateInput";
 
+export interface Version {
+	version: string;
+}
+
+export interface Response {
+	msg: string;
+}
+
+export interface Health {
+	version: Version;
+	delete: Response;
+	get: Response;
+	patch: Response;
+	post: Response;
+	put: Response;
+}
+
 export const userApi = rtkApi.injectEndpoints({
 	endpoints: (builder) => ({
+		health: builder.query<Health, void>({
+			query: () => "/vpn/health",
+		}),
+
 		getUsers: builder.query<User<true>[], void>({
-			query: () => "/rates",
+			query: () => "/users",
 		}),
 
 		updateUser: builder.mutation<User, { where: { id: string }; data: UserUpdateInput }>({
@@ -24,11 +45,17 @@ export const userApi = rtkApi.injectEndpoints({
 
 		synchronizeUsers: builder.mutation<void, User[]>({
 			query: () => ({
-				url: "/synchronize",
+				url: "/users/synchronize",
 				method: "POST",
 			}),
 		}),
 	}),
 });
 
-export const { useDeleteUserMutation, useGetUsersQuery, useSynchronizeUsersMutation, useUpdateUserMutation } = userApi;
+export const {
+	useHealthQuery,
+	useDeleteUserMutation,
+	useGetUsersQuery,
+	useSynchronizeUsersMutation,
+	useUpdateUserMutation,
+} = userApi;

@@ -1,4 +1,5 @@
 import { Purchase } from "@/entities/Purchase";
+import { Message, Ticket } from "@/entities/Support";
 
 export interface UserSchema {
 	user: User | null;
@@ -48,6 +49,8 @@ export interface User<isPurchases extends boolean = false> {
 		wg_psk: string;
 		wg_pub: string;
 	};
+	messages?: Message[]
+	tickets?: Ticket[]
 }
 
 enum Role {

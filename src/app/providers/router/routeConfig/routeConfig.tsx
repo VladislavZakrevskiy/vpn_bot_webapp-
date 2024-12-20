@@ -6,6 +6,9 @@ import {
 	getRouteSettings,
 	getRouteRates,
 	getRouteUsers,
+	getRouteMailing,
+	getRouteSupport,
+	getRouteTicket,
 } from "@/shared/consts/router";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { LazyMainPage } from "@/pages/MainPage";
@@ -14,6 +17,8 @@ import { LazyNotAuth } from "@/pages/NotAuth";
 import { LazySettingsPage } from "@/pages/Sections/Settings";
 import { LazyRatePage } from "@/pages/Sections/Rates";
 import { LazyUserPage } from "@/pages/Sections/Users";
+import { LazyMailingPage } from "@/pages/Mailing";
+import { LazySupportPage, LazyTicketPage } from "@/pages/Sections/Support";
 
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 	[AppRoutes.MAIN]: {
@@ -39,5 +44,17 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 	[AppRoutes.USERS]: {
 		path: getRouteUsers(),
 		element: <LazyUserPage />,
+	},
+	[AppRoutes.MAILING]: {
+		path: getRouteMailing(),
+		element: <LazyMailingPage />,
+	},
+	[AppRoutes.SUPPORT]: {
+		path: getRouteSupport(),
+		element: <LazySupportPage />,
+	},
+	[AppRoutes.TICKET]: {
+		path: getRouteTicket(":id"),
+		element: <LazyTicketPage />,
 	},
 };

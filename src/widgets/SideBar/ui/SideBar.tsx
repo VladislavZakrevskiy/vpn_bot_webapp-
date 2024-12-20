@@ -1,11 +1,17 @@
 import { Cell, IconButton, IconContainer, Modal, Section } from "@telegram-apps/telegram-ui";
-import { MdOutlineMenu } from "react-icons/md";
+import { MdHelpOutline, MdOutlineMenu } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { getRouteRates, getRouteSettings, getRouteUsers } from "@/shared/consts/router";
+import {
+	getRouteMailing,
+	getRouteRates,
+	getRouteSettings,
+	getRouteSupport,
+	getRouteUsers,
+} from "@/shared/consts/router";
 import { useState } from "react";
 import { FaMoneyBill } from "react-icons/fa";
-import { FaRegCircleUser } from "react-icons/fa6";
+import { FaRegCircleUser, FaRegMessage } from "react-icons/fa6";
 
 export const SideBar = () => {
 	const nav = useNavigate();
@@ -18,12 +24,32 @@ export const SideBar = () => {
 
 	return (
 		<>
-			<IconButton onClick={() => setIsOpen((prev) => !prev)}>
+			<IconButton size="l" onClick={() => setIsOpen((prev) => !prev)}>
 				<MdOutlineMenu />
 			</IconButton>
 
 			<Modal className="p-2" onOpenChange={setIsOpen} open={isOpen}>
 				<Section header="Сущности">
+					<Cell
+						onClick={() => nav(getRouteSupport())}
+						before={
+							<IconContainer>
+								<MdHelpOutline />
+							</IconContainer>
+						}
+					>
+						Техподдержка
+					</Cell>
+					<Cell
+						onClick={onNav(getRouteMailing())}
+						before={
+							<IconContainer>
+								<FaRegMessage />
+							</IconContainer>
+						}
+					>
+						Рассылка
+					</Cell>
 					<Cell
 						onClick={onNav(getRouteSettings())}
 						before={
