@@ -31,7 +31,7 @@ export const SideBar = () => {
 			<Modal className="p-2" onOpenChange={setIsOpen} open={isOpen}>
 				<Section header="Сущности">
 					<Cell
-						onClick={() => nav(getRouteSupport())}
+						onClick={onNav(getRouteSupport())}
 						before={
 							<IconContainer>
 								<MdHelpOutline />

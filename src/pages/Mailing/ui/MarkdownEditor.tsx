@@ -1,10 +1,13 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { Accordion, Caption, Headline, Text, Textarea } from "@telegram-apps/telegram-ui";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Accordion, Caption, Headline, Textarea } from "@telegram-apps/telegram-ui";
 
 const TelegramMessagePreview: React.FC<{ content: string }> = ({ content }) => {
 	return (
 		<div className="bg-gray-100 border border-gray-300 p-4 rounded-lg rounded-bl-none shadow-md max-w-md mx-auto mt-4">
-			<Text dangerouslySetInnerHTML={{ __html: content }}></Text>
+			<p
+				className="text-gray-800 leading-relaxed whitespace-pre-line"
+				dangerouslySetInnerHTML={{ __html: content }}
+			></p>
 		</div>
 	);
 };
@@ -36,8 +39,11 @@ export const MarkdownEditor = ({ setText, text }: { text: string; setText: Dispa
 
 	const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		setText(event.target.value);
-		setPreview(parseTelegramMarkdown(event.target.value));
 	};
+
+	useEffect(() => {
+		setPreview(parseTelegramMarkdown(text));
+	}, [text]);
 
 	return (
 		<div className="p-4 mx-auto">

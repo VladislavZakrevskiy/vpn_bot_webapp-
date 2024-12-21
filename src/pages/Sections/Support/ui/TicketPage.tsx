@@ -1,11 +1,13 @@
 import { MessageCard, Status, useGetTicketQuery } from "@/entities/Support";
 import { PageLoader } from "@/widgets/PageLoader";
-import { Headline, Text } from "@telegram-apps/telegram-ui";
-import { useParams } from "react-router-dom";
+import { Caption, Headline, IconButton, Text } from "@telegram-apps/telegram-ui";
+import { useNavigate, useParams } from "react-router-dom";
+import { IoMdArrowBack } from "react-icons/io";
 
 const TicketPage = () => {
 	const { id } = useParams<{ id: string }>();
 	const { isLoading, data: ticket } = useGetTicketQuery(id!);
+	const nav = useNavigate();
 
 	if (isLoading) {
 		return <PageLoader />;
@@ -21,30 +23,41 @@ const TicketPage = () => {
 	const { supporter, user, messages, created_at, status } = ticket;
 
 	return (
-		<div>
-			<div className="flex justify-between">
-				<Headline>{new Date(created_at).toLocaleString()}</Headline>
-				<Headline>{status === Status.OPEN ? "Открыт ❌" : "Закрыт ✅"}</Headline>
+		<div className="p-3">
+			<div className="flex gap-3 items-center mb-2">
+				<IconButton onClick={() => nav(-1)}>
+					<IoMdArrowBack />
+				</IconButton>
+				<div className="flex-1 flex justify-between">
+					<Text>{new Date(created_at).toLocaleString()}</Text>
+					<Text>{status === Status.OPEN ? "Открыт ❌" : "Закрыт ✅"}</Text>
+				</div>
 			</div>
-			<div className="grid grid-cols-2 gap-2">
-				<div className="flex flex-cik gap-2">
+
+			<div className="grid grid-cols-2 gap-2 mb-2">
+				<div className="flex flex-col gap-2">
 					<Headline>Поддержка</Headline>
-					<Text>{supporter.vpn.name}</Text>
-					<Text>{supporter.id}</Text>
-					<Text>{supporter.tg_id}</Text>
+					<Caption>Имя: {supporter.vpn.name}</Caption>
+					<Caption>ID: {supporter.id}</Caption>
+					<Caption>TG ID: {supporter.tg_id}</Caption>
 				</div>
-				<div className="flex flex-cik gap-2">
+				<div className="flex flex-col gap-2">
 					<Headline>Пользователь</Headline>
-					<Text>{user.vpn.name}</Text>
-					<Text>{user.id}</Text>
-					<Text>{user.tg_id}</Text>
+					<Caption>{user.vpn.name}</Caption>
+					<Caption>{user.id}</Caption>
+					<Caption>{user.tg_id}</Caption>
 				</div>
 			</div>
-			<div>
-				{messages.map((message) => (
+			{messages.length === 0 && (
+				<div className="flex justify-center items-center">
+					<Text>Сообщений нет</Text>
+				</div>
+			)}
+			{messages.map((message) => (
+				<div className="flex flex-col">
 					<MessageCard message={message} ticket={ticket} />
-				))}
-			</div>
+				</div>
+			))}
 		</div>
 	);
 };

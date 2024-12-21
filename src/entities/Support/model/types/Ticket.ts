@@ -13,6 +13,6 @@ export interface Ticket {
 }
 
 export enum Status {
-	OPEN,
-	CLOSE,
+	OPEN = "OPEN",
+	CLOSE = "CLOSE",
 }

@@ -9,7 +9,7 @@ const MailingPage = () => {
 	const { isLoading, data: users } = useGetUsersQuery();
 	const [selectedUsers, setSelectedUsers] = useState<MultiselectOption[]>([]);
 	const [options, setOptions] = useState<MultiselectOption[]>([]);
-	const [sendMailing] = useSendMailingMutation();
+	const [sendMailing, { isLoading: isSendLoading }] = useSendMailingMutation();
 	const [text, setText] = useState<string>("");
 
 	useEffect(() => {
@@ -21,6 +21,7 @@ const MailingPage = () => {
 	const onSubmit = async () => {
 		try {
 			await sendMailing({ msg: text, ids: selectedUsers.map(({ value }) => value.toString()) });
+			setText("");
 		} catch (e) {
 			console.log(e);
 		}
@@ -53,9 +54,11 @@ const MailingPage = () => {
 				filterFn={(input, user) => user.value.toString().includes(input)}
 			/>
 			<MarkdownEditor setText={setText} text={text} />
-			<Button onClick={onSubmit} stretched>
-				Отправить
-			</Button>
+			<div className="p-3">
+				<Button loading={isSendLoading} onClick={onSubmit} stretched>
+					Отправить
+				</Button>
+			</div>
 		</div>
 	);
 };

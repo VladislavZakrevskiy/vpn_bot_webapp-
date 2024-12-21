@@ -1,6 +1,6 @@
 import { Ticket, TicketCard, useGetSupportersQuery, useLazyGetTicketsQuery } from "@/entities/Support";
 import { PageLoader } from "@/widgets/PageLoader";
-import { Multiselect, Text } from "@telegram-apps/telegram-ui";
+import { Multiselect, Spinner, Text } from "@telegram-apps/telegram-ui";
 import { MultiselectOption } from "@telegram-apps/telegram-ui/dist/components/Form/Multiselect/types";
 import { useEffect, useState } from "react";
 
@@ -38,17 +38,21 @@ const SupportPage = () => {
 			/>
 			{!isTicketsLoading ? (
 				currentTickets.length === 0 ? (
-					<div className="flex justify-center items-center">
+					<div className="flex justify-center items-center p-2">
 						<Text>Тикетов нет</Text>
 					</div>
 				) : (
-					<div>
+					<div className="p-3 flex flex-col gap-2 items-stretch justify-center">
 						{currentTickets.map((ticket) => (
 							<TicketCard ticket={ticket} />
 						))}
 					</div>
 				)
-			) : null}
+			) : (
+				<div className="flex justify-center items-center ">
+					<Spinner size="l" />
+				</div>
+			)}
 		</div>
 	);
 };
