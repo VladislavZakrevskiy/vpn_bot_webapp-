@@ -10,6 +10,12 @@ export interface Ticket {
 	user_id: string;
 	supporter: User;
 	user: User;
+	tags: Tag[]
+}
+
+export interface Tag {
+	id: string
+	value: string
 }
 
 export enum Status {
