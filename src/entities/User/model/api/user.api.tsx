@@ -1,5 +1,5 @@
 import { rtkApi } from "@/shared/api/rtkApi";
-import { User } from "../types/User";
+import { Role, User } from "../types/User";
 import { UserUpdateInput } from "../types/UserUpdateInput";
 
 export interface Version {
@@ -27,6 +27,14 @@ export const userApi = rtkApi.injectEndpoints({
 
 		getUsers: builder.query<User<true>[], void>({
 			query: () => "/users",
+		}),
+
+		switchRole: builder.mutation<User, { role: Role; id: string }>({
+			query: (body) => ({
+				url: "/users/role",
+				body,
+				method: "POST",
+			}),
 		}),
 
 		updateUser: builder.mutation<User, { where: { id: string }; data: UserUpdateInput }>({
@@ -57,5 +65,6 @@ export const {
 	useDeleteUserMutation,
 	useGetUsersQuery,
 	useSynchronizeUsersMutation,
+	useSwitchRoleMutation,
 	useUpdateUserMutation,
 } = userApi;

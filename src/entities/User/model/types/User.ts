@@ -53,7 +53,8 @@ export interface User<isPurchases extends boolean = false> {
 	tickets?: Ticket[]
 }
 
-enum Role {
-	ADMIN,
-	USER,
+export enum Role {
+	ADMIN = 'ADMIN',
+	USER = 'USER',
+	SUPPORT = "SUPPORT"
 }

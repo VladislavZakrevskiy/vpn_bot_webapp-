@@ -3,12 +3,14 @@ import { PageLoader } from "@/widgets/PageLoader";
 import { Multiselect, Spinner, Text } from "@telegram-apps/telegram-ui";
 import { MultiselectOption } from "@telegram-apps/telegram-ui/dist/components/Form/Multiselect/types";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const SupportPage = () => {
 	const { data: supporters, isLoading } = useGetSupportersQuery();
 	const [getTickets, { isLoading: isTicketsLoading }] = useLazyGetTicketsQuery();
 	const [selectedSupporters, setSelectedSupporters] = useState<MultiselectOption[]>([]);
 	const [currentTickets, setTickets] = useState<Ticket[]>([]);
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
 		const fetchTickets = async () => {
@@ -17,10 +19,35 @@ const SupportPage = () => {
 				if (tickets.data) {
 					setTickets(tickets.data);
 				}
+			} else {
+				const tickets = await getTickets();
+				if (tickets.data) {
+					setTickets(tickets.data);
+				}
 			}
 		};
 		fetchTickets();
 	}, [selectedSupporters]);
+
+	useEffect(() => {
+		const ids = searchParams.get("ids")?.split("/\\");
+		if (supporters && ids && ids.length !== 0) {
+			setSelectedSupporters(
+				ids.map((value) => ({ value, label: supporters.find(({ id }) => id === value)?.vpn.name || "Не распознан" })),
+			);
+		} else {
+			setSelectedSupporters([]);
+		}
+	}, [supporters, searchParams]);
+
+	const onSelect = (e: MultiselectOption[]) => {
+		if (e.length === 0) {
+			setSearchParams();
+			return;
+		}
+		// setSelectedSupporters(e);
+		setSearchParams(new URLSearchParams({ ids: e.map(({ value }) => value.toString()).join("/\\") }));
+	};
 
 	if (isLoading) {
 		return <PageLoader />;
@@ -29,10 +56,11 @@ const SupportPage = () => {
 	return (
 		<div>
 			<Multiselect
-				header="Персонал поддержки"
+				status="focused"
+				header="Ответственные за тикеты"
 				options={supporters ? supporters.map(({ vpn: { name }, id }) => ({ label: name, value: id })) : []}
 				value={selectedSupporters}
-				onChange={(e) => setSelectedSupporters(e)}
+				onChange={onSelect}
 				selectedBehavior="hide"
 				filterFn={(input, user) => user.value.toString().includes(input)}
 			/>

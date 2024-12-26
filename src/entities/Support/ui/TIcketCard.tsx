@@ -18,7 +18,7 @@ export const TicketCard: FC<TicketCardProps> = ({ ticket }) => {
 				{status === Status.OPEN ? "Открыт ❌" : "Закрыт ✅"}
 			</Card.Chip>
 
-			<div className="flex flex-col gap-2 p-3">
+			<div className="flex flex-col gap-2 p-4">
 				<Text>Поддержка</Text>
 				<Caption>ID: {supporter.id}</Caption>
 				<Caption>TG ID: {supporter.tg_id}</Caption>

@@ -28,7 +28,7 @@ export const SideBar = () => {
 				<MdOutlineMenu />
 			</IconButton>
 
-			<Modal className="p-2" onOpenChange={setIsOpen} open={isOpen}>
+			<Modal onOpenChange={setIsOpen} open={isOpen}>
 				<Section header="Сущности">
 					<Cell
 						onClick={onNav(getRouteSupport())}

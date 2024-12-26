@@ -3,6 +3,7 @@ export {
 	useGetUsersQuery,
 	useSynchronizeUsersMutation,
 	useUpdateUserMutation,
+	useSwitchRoleMutation,
 } from "./model/api/user.api";
 export type { UserUpdateInput } from "./model/types/UserUpdateInput";
 export { UserActions, UserReducer, useUserActions } from "./model/slice/userSlice";

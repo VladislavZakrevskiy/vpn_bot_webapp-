@@ -9,15 +9,15 @@ import { AuthProvider } from "./entities/User/ui/AuthProvider";
 const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
-	<BrowserRouter>
-		<StoreProvider>
-			<ErrorBoundary>
-				<ThemeProvider>
+	<ThemeProvider>
+		<BrowserRouter>
+			<StoreProvider>
+				<ErrorBoundary>
 					<AuthProvider>
 						<App />
 					</AuthProvider>
-				</ThemeProvider>
-			</ErrorBoundary>
-		</StoreProvider>
-	</BrowserRouter>,
+				</ErrorBoundary>
+			</StoreProvider>
+		</BrowserRouter>
+	</ThemeProvider>,
 );

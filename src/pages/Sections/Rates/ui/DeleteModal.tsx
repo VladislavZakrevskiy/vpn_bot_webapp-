@@ -48,7 +48,7 @@ export const DeleteModal: FC<DeleteModalProps> = ({ refetch, id }) => {
 						</div>
 					}
 				>
-					<img src="/AnimatedSticker-ezgif.com-gif-maker.gif" alt="Telegram Gif" className="w-40 h-40" />
+					<img src="/ThinkDuck.gif" alt="Telegram Gif" className="w-40 h-40" />
 				</Placeholder>
 			</Modal>
 		</>

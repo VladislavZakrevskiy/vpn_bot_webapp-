@@ -17,6 +17,7 @@ export const DeleteModal: FC<DeleteModalProps> = ({ refetch, id }) => {
 		try {
 			await deleteRate({ id }).unwrap();
 			refetch();
+			setIsOpen(false);
 		} catch (error) {
 			console.error("Ошибка при удалении:", error);
 		}
@@ -48,7 +49,7 @@ export const DeleteModal: FC<DeleteModalProps> = ({ refetch, id }) => {
 						</div>
 					}
 				>
-					<img src="/AnimatedSticker-ezgif.com-gif-maker.gif" alt="Telegram Gif" className="w-40 h-40" />
+					<img src="/ThinkDuck.gif" alt="Telegram Gif" className="w-40 h-40" />
 				</Placeholder>
 			</Modal>
 		</>

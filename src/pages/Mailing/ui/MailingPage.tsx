@@ -46,7 +46,8 @@ const MailingPage = () => {
 	return (
 		<div>
 			<Multiselect
-				header="Отправители"
+				status="focused"
+				header="Получатели"
 				options={users ? [{ label: "Всем пользователям", value: "all_users" }, ...options] : []}
 				value={selectedUsers}
 				onChange={(e) => setSelectedUsers(e)}
