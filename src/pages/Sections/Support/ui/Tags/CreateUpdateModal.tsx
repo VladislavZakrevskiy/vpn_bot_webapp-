@@ -1,5 +1,5 @@
 import { useAddTagMutation, useUpdateTagMutation } from "@/entities/Support";
-import { Button, IconButton, Input, Modal } from "@telegram-apps/telegram-ui";
+import { Button, IconButton, Input, Modal, Title } from "@telegram-apps/telegram-ui";
 import { FC, useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { GrUpdate } from "react-icons/gr";
@@ -33,6 +33,7 @@ export const CreateUpdateModal: FC<DeleteModalProps> = ({ refetch, id, mode, val
 				refetch();
 				setIsOpen(false);
 			}
+			setCurrentValue("");
 		} catch (e) {
 			console.log(e);
 		}
@@ -45,10 +46,18 @@ export const CreateUpdateModal: FC<DeleteModalProps> = ({ refetch, id, mode, val
 			</IconButton>
 
 			<Modal onOpenChange={setIsOpen} open={isOpen}>
-				<Input required={mode === "create"} value={currentValue} onChange={(e) => setCurrentValue(e.target.value)} />
-				<Button loading={isAddTagLoading || isUpdateTagsLoading} onClick={onSubmitHandle}>
-					Подтвердить
-				</Button>
+				<Title className="text-center">{mode === "create" ? "Добавление тега" : "Изменение тега"}</Title>
+				<Input
+					placeholder="Название тега"
+					required={mode === "create"}
+					value={currentValue}
+					onChange={(e) => setCurrentValue(e.target.value)}
+				/>
+				<div className="p-3">
+					<Button stretched loading={isAddTagLoading || isUpdateTagsLoading} onClick={onSubmitHandle}>
+						Подтвердить
+					</Button>
+				</div>
 			</Modal>
 		</>
 	);

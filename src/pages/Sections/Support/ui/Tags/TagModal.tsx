@@ -1,5 +1,5 @@
 import { useGetTagsQuery } from "@/entities/Support";
-import { Cell, IconButton, Modal, Spinner, Text } from "@telegram-apps/telegram-ui";
+import { IconButton, Modal, Spinner, Text } from "@telegram-apps/telegram-ui";
 import { FC, useState } from "react";
 import { FaHashtag } from "react-icons/fa";
 import { CreateUpdateModal } from "./CreateUpdateModal";
@@ -10,6 +10,7 @@ interface DeleteModalProps {}
 export const TagModal: FC<DeleteModalProps> = () => {
 	const { data: tags, isLoading, refetch } = useGetTagsQuery();
 	const [isOpen, setIsOpen] = useState(false);
+	console.log(tags);
 
 	return (
 		<>
@@ -18,31 +19,33 @@ export const TagModal: FC<DeleteModalProps> = () => {
 			</IconButton>
 
 			<Modal onOpenChange={setIsOpen} open={isOpen}>
-				{isLoading ? (
-					<div className="p-3 flex justify-center items-center">
-						<Spinner size="l" />
-					</div>
-				) : (
-					<>
-						<div className="flex justify-between">
-							<Text>{tags?.length !== 0 ? `Тегов: ${tags?.length}` : "Тегов нет"}</Text>
-							<CreateUpdateModal mode={"create"} refetch={refetch} />
+				<div className="p-3">
+					{isLoading ? (
+						<div className="flex justify-center items-center">
+							<Spinner size="l" />
 						</div>
-						{tags ? (
-							<div className="grid grid-rows-1 gap-1">
-								{tags.map((tag) => (
-									<Cell className="flex justify-between items-center gap-2">
-										<Text></Text>
-										<div className="flex items-center justify-center gap-1">
-											<DeleteTagModal id={tag.id} refetch={refetch} />
-											<CreateUpdateModal mode={"update"} id={tag.id} refetch={refetch} />
-										</div>
-									</Cell>
-								))}
+					) : (
+						<>
+							<div className="flex justify-between mb-2">
+								<Text>{tags?.length !== 0 ? `Тегов: ${tags?.length}` : "Тегов нет"}</Text>
+								<CreateUpdateModal mode={"create"} refetch={refetch} />
 							</div>
-						) : null}
-					</>
-				)}
+							{tags ? (
+								<div className="grid grid-rows-1 gap-1">
+									{tags.map((tag) => (
+										<div className="flex justify-between flex-1 items-center gap-2">
+											<Text>{tag.value}</Text>
+											<div className="flex items-center justify-center gap-1">
+												<DeleteTagModal id={tag.id} refetch={refetch} />
+												<CreateUpdateModal value={tag.value} mode={"update"} id={tag.id} refetch={refetch} />
+											</div>
+										</div>
+									))}
+								</div>
+							) : null}
+						</>
+					)}
+				</div>
 			</Modal>
 		</>
 	);

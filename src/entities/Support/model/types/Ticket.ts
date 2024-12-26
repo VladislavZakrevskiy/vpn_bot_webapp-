@@ -10,7 +10,7 @@ export interface Ticket {
 	user_id: string;
 	supporter: User;
 	user: User;
-	tags: Tag[]
+	tag: Tag
 }
 
 export interface Tag {

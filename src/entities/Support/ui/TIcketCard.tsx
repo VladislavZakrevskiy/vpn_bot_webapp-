@@ -9,7 +9,7 @@ interface TicketCardProps {
 }
 
 export const TicketCard: FC<TicketCardProps> = ({ ticket }) => {
-	const { created_at, status, supporter, user } = ticket;
+	const { status, supporter, user, tag } = ticket;
 	const nav = useNavigate();
 
 	return (
@@ -30,7 +30,7 @@ export const TicketCard: FC<TicketCardProps> = ({ ticket }) => {
 				<Caption>Имя: {user.vpn.name}</Caption>
 			</div>
 
-			<Card.Cell readOnly subtitle={new Date(created_at).toLocaleString()}>
+			<Card.Cell readOnly subtitle={tag.value}>
 				<Button onClick={() => nav(getRouteTicket(ticket.id))}>Перейти к сообщениям</Button>
 			</Card.Cell>
 		</Card>

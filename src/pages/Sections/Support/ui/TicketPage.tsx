@@ -20,7 +20,7 @@ const TicketPage = () => {
 			</div>
 		);
 	}
-	const { supporter, user, messages, created_at, status } = ticket;
+	const { supporter, user, messages, created_at, status, tag } = ticket;
 
 	return (
 		<div className="p-3">
@@ -28,9 +28,10 @@ const TicketPage = () => {
 				<IconButton onClick={() => nav(-1)}>
 					<IoMdArrowBack />
 				</IconButton>
-				<div className="flex-1 flex justify-between">
-					<Text>{new Date(created_at).toLocaleString()}</Text>
-					<Text>{status === Status.OPEN ? "Открыт ❌" : "Закрыт ✅"}</Text>
+				<div className="flex-1 grid grid-cols-3">
+					<Caption>{new Date(created_at).toLocaleString()}</Caption>
+					<Caption>{tag.value}</Caption>
+					<Caption>{status === Status.OPEN ? "Открыт ❌" : "Закрыт ✅"}</Caption>
 				</div>
 			</div>
 
