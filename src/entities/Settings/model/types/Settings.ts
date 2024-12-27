@@ -8,4 +8,7 @@ export interface Settings {
 	is_star_enable: boolean;
 	admin_command: string;
 	is_crypto_enable: boolean;
+	tp_hello_message: string;
+	tp_close_support_message: string;
+	tp_close_user_message: string;
 }

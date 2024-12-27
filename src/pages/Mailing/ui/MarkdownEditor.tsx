@@ -49,6 +49,7 @@ export const MarkdownEditor = ({ setText, text }: { text: string; setText: Dispa
 		<div className="p-4 mx-auto">
 			<Headline className="mb-4 text-center">Редактор</Headline>
 			<Textarea
+				status="focused"
 				value={text}
 				onChange={handleChange}
 				placeholder="Напишите сообщение выбранным пользователям"

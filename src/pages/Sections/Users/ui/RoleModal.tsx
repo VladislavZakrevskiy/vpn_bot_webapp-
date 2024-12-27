@@ -44,7 +44,7 @@ export const RoleModal: FC<DeleteModalProps> = ({ refetch, id }) => {
 								loading={isLoading}
 								onClick={handleSwitchRole(Role.SUPPORT)}
 							>
-								Поддеркжа
+								SUPPORT
 							</Button>
 							<Button
 								mode="bezeled"
@@ -54,7 +54,7 @@ export const RoleModal: FC<DeleteModalProps> = ({ refetch, id }) => {
 								loading={isLoading}
 								onClick={handleSwitchRole(Role.USER)}
 							>
-								Пользователь
+								USER
 							</Button>
 							<Button
 								mode="bezeled"
@@ -64,7 +64,7 @@ export const RoleModal: FC<DeleteModalProps> = ({ refetch, id }) => {
 								loading={isLoading}
 								onClick={handleSwitchRole(Role.ADMIN)}
 							>
-								Админ
+								ADMIN
 							</Button>
 						</div>
 					}

@@ -30,7 +30,7 @@ const TicketPage = () => {
 				</IconButton>
 				<div className="flex-1 grid grid-cols-3">
 					<Caption>{new Date(created_at).toLocaleString()}</Caption>
-					<Caption>{tag.value}</Caption>
+					<Caption>{tag?.value}</Caption>
 					<Caption>{status === Status.OPEN ? "Открыт ❌" : "Закрыт ✅"}</Caption>
 				</div>
 			</div>

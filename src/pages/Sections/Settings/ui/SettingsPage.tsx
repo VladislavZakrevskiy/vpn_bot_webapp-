@@ -81,6 +81,27 @@ const SettingsPage = () => {
 					disabled={mode === "read"}
 					header="Макс. сертификатов"
 				/>
+				<Input
+					value={currentSettings.tp_hello_message || ""}
+					onChange={(e) => setCurrentSettings((prev) => ({ ...prev!, tp_hello_message: e.target.value }))}
+					required
+					disabled={mode === "read"}
+					header="ТП Приветствие"
+				/>
+				<Input
+					value={currentSettings.tp_close_user_message || ""}
+					onChange={(e) => setCurrentSettings((prev) => ({ ...prev!, tp_close_user_message: e.target.value }))}
+					required
+					disabled={mode === "read"}
+					header="ТП Конец (User)"
+				/>
+				<Input
+					value={currentSettings.tp_close_support_message || ""}
+					onChange={(e) => setCurrentSettings((prev) => ({ ...prev!, tp_close_support_message: e.target.value }))}
+					required
+					disabled={mode === "read"}
+					header="ТП Конец (Support)"
+				/>
 				<Cell
 					onClick={
 						mode === "read"

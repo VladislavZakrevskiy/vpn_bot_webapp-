@@ -30,7 +30,7 @@ export const TicketCard: FC<TicketCardProps> = ({ ticket }) => {
 				<Caption>Имя: {user.vpn.name}</Caption>
 			</div>
 
-			<Card.Cell readOnly subtitle={tag.value}>
+			<Card.Cell readOnly subtitle={tag?.value}>
 				<Button onClick={() => nav(getRouteTicket(ticket.id))}>Перейти к сообщениям</Button>
 			</Card.Cell>
 		</Card>
